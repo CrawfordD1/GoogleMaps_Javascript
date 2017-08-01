@@ -87,9 +87,11 @@ var MapWrapper = function(container, center, zoom){
 }
 
 MapWrapper.prototype.addMarker = function(coords){
+
   var marker = new google.maps.Marker({
     position: coords,
-    map: this.googleMap
+    map: this.googleMap,
+    icon: 'marker.png'
   });
   marker.setAnimation(google.maps.Animation.DROP)
 
@@ -102,6 +104,7 @@ MapWrapper.prototype.addMarker = function(coords){
   });
 
   this.markers.push(marker);
+
 }
 
 MapWrapper.prototype.addClickEvent = function(){
@@ -122,15 +125,40 @@ MapWrapper.prototype.bounceMarkers = function(){
 
 MapWrapper.prototype.setRandomLocation = function(){
   var coordArray = [
-  {lat: 27.380583, lng: 33.631839, zooom: 17},
-  {lat: -4.289303, lng: 31.396239, zoom: 21},
-  {lat: 37.629562, lng: -116.849556, zoom: 16},
-  {lat: 55.857103, lng: -4.243951, zoom: 16}
+  {lat: 27.380583, lng: 33.631839},
+  {lat: -4.289303, lng: 31.396239},
+  {lat: 37.629562, lng: -116.849556},
+  {lat: 55.857103, lng: -4.243951}
   ]
-  coords = coordArray[Math.floor(Math.random() * 4)];
+  coords = coordArray[Math.floor(Math.random() * (coordArray.length - 0) + 0)];
   this.googleMap.setCenter(coords);
   this.googleMap.mapTypeId = 'hybrid';
-  this.googleMap.setZoom(coords.zoom);
+}
+
+MapWrapper.prototype.goHome = function(){
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+
+  function success(pos) {
+    var crd = pos.coords;
+    this.googleMap.setCenter({
+        lat: crd.latitude,
+        lng: crd.longitude
+    });
+    this.googleMap.mapTypeId = 'hybrid';
+  };
+  function error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  };
+
+  navigator.geolocation.getCurrentPosition(success.bind(this), error, options);
+
+
+
+
 }
 
 

@@ -41,6 +41,9 @@ var initialize = function(){
   var wherebutton = document.querySelector('#whereami-button');
   wherebutton.addEventListener('click', whereAmI);
 
+  var homeButton = document.querySelector('#home_button');
+  homeButton.addEventListener('click', mainMap.goHome.bind(mainMap));
+
 }
 
 
