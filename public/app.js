@@ -14,6 +14,7 @@ var whereAmI = function(){
 
     window.alert("Your Location: " + " " + `Lat: ${crd.latitude}` + " | " + `Long: ${crd.longitude}`);
   };
+
   function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   };
@@ -25,7 +26,7 @@ var whereAmI = function(){
 
 var initialize = function(){
   var center = {lat: 55.857103, lng: -4.243951};
-  var zoom = 18;
+  var zoom = 11;
   var mapDiv = document.querySelector('#main-map')
   var mainMap = new MapWrapper(mapDiv, center, zoom);
 

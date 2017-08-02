@@ -128,7 +128,6 @@ MapWrapper.prototype.setRandomLocation = function(){
   {lat: 27.380583, lng: 33.631839},
   {lat: -4.289303, lng: 31.396239},
   {lat: 37.629562, lng: -116.849556},
-  {lat: 55.857103, lng: -4.243951}
   ]
   coords = coordArray[Math.floor(Math.random() * (coordArray.length - 0) + 0)];
   this.googleMap.setCenter(coords);
@@ -148,24 +147,14 @@ MapWrapper.prototype.goHome = function(){
         lat: crd.latitude,
         lng: crd.longitude
     });
-    this.googleMap.mapTypeId = 'hybrid';
+    this.googleMap.setZoom(18)
+    this.googleMap.mapTypeId = 'roadmap';
   };
   function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   };
 
   navigator.geolocation.getCurrentPosition(success.bind(this), error, options);
-
-
-
-
+09
 }
-
-
-
-
-
-
-
-
 

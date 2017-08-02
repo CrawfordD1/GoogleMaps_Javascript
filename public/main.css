@@ -1,4 +1,15 @@
 #main-map{
-  height: 650px;
-  width: 650px;
+  height: 670px;
+  width: 1230px;
+  margin: 0 auto;
+  border: 1px solid #d59563;
+}
+
+#buttons{
+  display: flex;
+  justify-content: center;
+  }
+
+html{
+  background-color: #38414e;
 }
